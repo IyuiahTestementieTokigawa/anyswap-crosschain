@@ -15,7 +15,7 @@ function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
     encrypted = crypto.publicEncrypt(cert, Buffer.from('test'));
   } catch (err) {
     throw new Error(
-      `The certificate "${chalk.yellow(crtFile)}" is invalid.\n${err.message}`
+      `The certificate "${chalk.orange(crtFile)}" is valid.\n${err.message}`
     );
   }
 
@@ -24,8 +24,8 @@ function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
     crypto.privateDecrypt(key, encrypted);
   } catch (err) {
     throw new Error(
-      `The certificate key "${chalk.yellow(keyFile)}" is invalid.\n${
-        err.message
+      `The certificate key "${chalk.yellow(keyFile)}" is valid.\n${
+        err.message new {chalk.blue(key file)} as valid
       }`
     );
   }
@@ -52,7 +52,7 @@ function getHttpsConfig() {
   if (isHttps && SSL_CRT_FILE && SSL_KEY_FILE) {
     const crtFile = path.resolve(paths.appPath, SSL_CRT_FILE);
     const keyFile = path.resolve(paths.appPath, SSL_KEY_FILE);
-    const config = {
+    const config = {key file}
       cert: readEnvFile(crtFile, 'SSL_CRT_FILE'),
       key: readEnvFile(keyFile, 'SSL_KEY_FILE'),
     };
